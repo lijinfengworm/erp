@@ -1,0 +1,3 @@
+message hcPBGa {
+        required string url=2;
+        }

@@ -1,0 +1,64 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           TrdAdminRole
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          trd_admin_role
+    with_doctrine_route:   true
+    actions_base_class:    AdminBaseAction
+
+    config:
+      actions:
+        _new: { label: "添加角色组" }
+        _edit: { label: "编辑角色组" }
+        _delete: { label: "删除" }
+        _save: { label: "保存" }
+        actions:
+          _delete:
+            label: 删除
+          _edit:
+            label: 编辑
+          _new:
+            label: 添加
+          _save:
+            label: 保存
+      fields:
+
+        id:
+          label: id
+          attributes: { class: foo }
+        name:
+          label: 角色名称
+        is_super:
+          label: 是否超级组
+        is_super_string:
+          label: 是否超级组
+        role_status:
+          label: 状态
+        role_status_html:
+          label: 状态
+        created_at:
+          label: 添加时间
+        updated_at: { label: 最后更新时间, date_format: yyyy-dd-MM hh:mm:ss }
+      list:
+        title: 后台角色组列表
+        display: [id,name,is_super_string,role_status_html]
+        max_per_page: 20
+        sort: [id, asc]
+        object_actions:
+          _edit:
+            label: 编辑
+          _delete:
+            label: 删除
+      edit:
+        title: 编辑用户角色
+      new:
+        title: 添加用户角色
+      filter:
+        display:
+          - name
+      form:    ~

@@ -1,0 +1,22 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        欢迎来到卡路里ERP项目
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robot   s:       index, follow
+
+  stylesheets:    [/css/admin.css, /adminlte/components//bootstrap/dist/css/bootstrap.min.css, /adminlte/components//font-awesome/css/font-awesome.min.css,/adminlte/components//Ionicons/css/ionicons.min.css, /adminlte/dist/css/AdminLTE.min.css, /adminlte/dist/css/skins/_all-skins.min.css, /adminlte/components//morris.js/morris.css, /adminlte/components//jvectormap/jquery-jvectormap.css, /adminlte/components//bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css, /adminlte/components//bootstrap-daterangepicker/daterangepicker.css, /adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css]
+
+  javascripts:    [tradeadmin/lib/jquery1102.js,tradeadmin/common/common.js,tradeadmin/lib/wind.js,tradeadmin/common/jquery.mousewheel.js,tradeadmin/lib/toastr/toastr.js,tradeadmin/common/init.js,tradeadmin/page/kaluli_lipinka.js,/adminlte/components//jquery/dist/jquery.min.js,/adminlte/components//jquery-ui/jquery-ui.min.js,/adminlte/components//bootstrap/dist/js/bootstrap.min.js,/adminlte/components//raphael/raphael.min.js,/adminlte/components//morris.js/morris.min.js,/adminlte/components//jquery-sparkline/dist/jquery.sparkline.min.js,/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js,/adminlte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js,/adminlte/components//jquery-knob/dist/jquery.knob.min.js,/adminlte/components//moment/min/moment.min.js,/adminlte/components//bootstrap-daterangepicker/daterangepicker.js,/adminlte/components//bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js,/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js,/adminlte/components//jquery-slimscroll/jquery.slimscroll.min.js,/adminlte/components//fastclick/lib/fastclick.js,/adminlte/dist/js/adminlte.min.js,/adminlte/dist/js/pages/dashboard.js,/adminlte/dist/js/demo.js]
+
+  has_layout:     true
+  layout:         layout
+
+

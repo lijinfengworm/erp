@@ -1,0 +1,201 @@
+BackendUser:
+  BackendUser_1:
+    uid: '5126228'
+    username: 康莹
+    password: kangying
+    email: kk@ff.com
+    mobile: '123'
+    acl: 1023
+    last_login_time: null
+  BackendUser_2:
+    uid: '4079755'
+    username: scourgen
+    password: scourgen123
+    email: hongtao@hoopchina.com
+    mobile: '2147483647'
+    acl: 511
+    last_login_time: null
+  BackendUser_3:
+    uid: '256650'
+    username: 新叶秋
+    password: '123456'
+    email: 1@fg.com
+    mobile: '2'
+    acl: 1023
+    last_login_time: null
+  BackendUser_4:
+    uid: '5196855'
+    username: 梦在枕边
+    password: '123456'
+    email: 1@fg.com
+    mobile: '2147483647'
+    acl: 511
+    last_login_time: null
+  BackendUser_5:
+    uid: '5125995'
+    username: 新叶秋
+    password: hc1234
+    email: 1@fg.com
+    mobile: '3'
+    acl: 511
+    last_login_time: null
+  BackendUser_6:
+    uid: '3497632'
+    username: 黑大牌
+    password: hc1234
+    email: 1@fg.com
+    mobile: '4'
+    acl: 511
+    last_login_time: null
+  BackendUser_7:
+    uid: '414013'
+    username: 闪电
+    password: hcbebig
+    email: 1@fg.com
+    mobile: '2'
+    acl: 511
+    last_login_time: null
+  BackendUser_8:
+    uid: '149551'
+    username: rijay
+    password: hcbebig
+    email: 1@fg.com
+    mobile: '1'
+    acl: 511
+    last_login_time: null
+  BackendUser_9:
+    uid: '181253'
+    username: vitch
+    password: hcbebig
+    email: vitch@hoopchina.com
+    mobile: '2147483647'
+    acl: 511
+    last_login_time: null
+  BackendUser_10:
+    uid: '1144'
+    username: 不羁
+    password: hcbebig
+    email: 1@fg.com
+    mobile: '1'
+    acl: 511
+    last_login_time: null
+  BackendUser_11:
+    uid: '13216'
+    username: 杨
+    password: zgsh9420
+    email: starburyyang@gmail.com
+    mobile: '2147483647'
+    acl: 511
+    last_login_time: null
+  BackendUser_12:
+    uid: '5010678'
+    username: suo_yunpeng
+    password: '19369943'
+    email: suoyunpeng@hoopchina.com
+    mobile: '2147483647'
+    acl: 1023
+    last_login_time: null
+  BackendUser_13:
+    uid: '138'
+    username: remus
+    password: '123456'
+    email: 1@fg.com
+    mobile: '123123'
+    acl: 511
+    last_login_time: null
+  BackendUser_14:
+    uid: '187602'
+    username: SlimForce
+    password: inloving
+    email: 1@fg.com
+    mobile: '123123'
+    acl: 511
+    last_login_time: null
+  BackendUser_15:
+    uid: '2931330'
+    username: 落洛
+    password: '123456'
+    email: 1@fg.com
+    mobile: '12313123'
+    acl: 511
+    last_login_time: null
+  BackendUser_16:
+    uid: '5291804'
+    username: imikay
+    password: imikay
+    email: imikay@gmail.com
+    mobile: '1111111'
+    acl: 511
+    last_login_time: null
+  BackendUser_18:
+    uid: '100122'
+    username: magiconeal
+    password: magic19851215
+    email: onealliu@hoopchina.com
+    mobile: '2147483647'
+    acl: 511
+    last_login_time: null
+  BackendUser_19:
+    uid: '5156722'
+    username: Erika_li
+    password: '123'
+    email: 1@1.com
+    mobile: '123'
+    acl: 511
+    last_login_time: null
+  BackendUser_20:
+    uid: '1'
+    username: 雪鸟
+    password: mika639
+    email: 1@fg.com
+    mobile: '1'
+    acl: 511
+    last_login_time: null
+  BackendUser_21:
+    uid: '1'
+    username: Trip_hop
+    password: '123456'
+    email: 1@fg.com
+    mobile: '123123'
+    acl: 511
+    last_login_time: null
+  BackendUser_22:
+    uid: '5284159'
+    username: marenliang
+    password: '123456'
+    email: marenliang@hoopchina.com
+    mobile: '2147483647'
+    acl: 511
+    last_login_time: null
+  BackendUser_23:
+    uid: '1'
+    username: webgame
+    password: webgamev5
+    email: webgamekefu@hoopchina.com
+    mobile: '2147483647'
+    acl: 511
+    last_login_time: null
+  BackendUser_24:
+    uid: '33'
+    username: syp
+    password: syp
+    email: '22'
+    mobile: '33'
+    acl: 511
+    last_login_time: null
+  BackendUser_25:
+    uid: '301339'
+    username: sdfsdf
+    password: sdfsdf
+    email: ''
+    mobile: '0'
+    acl: 511
+    last_login_time: null
+  BackendUser_26:
+    uid: '211'
+    username: test
+    password: test
+    email: '1'
+    mobile: '2'
+    acl: 511
+    last_login_time: null

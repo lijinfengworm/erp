@@ -1,0 +1,11 @@
+message hcPBPm_city 
+{
+  required string city = 1;
+  required int32 uid_from = 2;
+  required string username_from = 3;
+  required string title = 4;
+  required string content = 5;
+  required int32 sendtime = 6;
+  required int32 isnew = 7;
+  required int32 type = 8;
+}

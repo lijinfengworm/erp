@@ -1,0 +1,2202 @@
+options:
+  collate: utf8_general_ci
+  charset: utf8
+  type: InnoDB
+
+KaluliArticle:
+  actAs:
+    Timestampable: ~
+  tableName: kll_article
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    title:               { type: string(128) }
+    type:                { type: integer(3), unsigned: true }
+    category:            { type: integer, unsigned: true }
+    category_child:      { type: integer, unsigned: true }
+    hits:                { type: integer, unsigned: true }
+    intro:               { type: string(512) }
+    status:              { type: integer(1), unsigned: true }
+  indexes:
+    type_category:
+      fields: [type,category]
+KaluliWarehouses:
+  actAs:
+    Timestampable: ~
+  tableName: kll_warehouses
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    name:                { type: string(32) }
+    code:                { type: string(12) }
+    address:             { type: string(128) }
+    note:                { type: string(64) }
+    create_date:         { type: timestamp }
+    contact_name:        { type: string(24) }
+    contact_phone:       { type: string(16) }
+    contact_mobile:      { type: string(16) }
+    type_name:           { type: string(24) }
+    area_name:           { type: string(128) }
+    freight_type:           { type: int(1) }
+  indexes:
+    code:
+      fields: [code]
+KaluliArticleAttr:
+  tableName: kll_article_attr
+  connection: kaluli
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    article_id:         { type: integer, unsigned: true }
+    content:            { type: string(15000) }
+
+KaluliCategory:
+  tableName: kll_category
+  connection: kaluli
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    pid:                { type: integer, unsigned: true }
+    name:               { type: string(128) }
+  indexes:
+    pid:
+      fields: [pid]
+
+
+KaluliItem:
+  actAs:
+    Timestampable: ~
+  tableName: kll_item
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    title:               { type: string(128) }
+    pic:                 { type: string(235) }
+    brand_id:            { type: integer, unsigned: true }
+    sell_point:          { type: string(512) }
+    intro:               { type: string(512) }
+    price:               { type: float, length: 8, scale: 2 }
+    discount_price:      { type: float, length: 8, scale: 2 }
+    hits:                { type: integer, unsigned: true }
+    status:              { type: integer(1), unsigned: true }
+    status_es:           { type: integer(1), unsigned: true }
+
+
+KaluliItemAttr:
+  tableName: kll_item_attr
+  connection: kaluli
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    item_id:            { type: integer, unsigned: true }
+    content:             { type: text }
+    pic_detail:            { type: text }
+    comment_imgs_count:  { type: integer, unsigned: true }
+    comment_count:       { type: integer, unsigned: true }
+    comment_tags_count:  { type: string(2000) }
+    attrs:              { type: string(2000) }
+    review:              { type: string(255) }
+    sales_count:        { type: integer, unsigned: true }
+
+
+KaluliItemSku:
+  tableName: kll_item_sku
+  connection: kaluli
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    item_id:            { type: integer, unsigned: true }
+    code:              { type: string(100) }
+    goods_no:          { type: string(255) }
+    attr:              { type: string(5000) }
+    ware_sku:              { type: string(64) }
+    price:               { type: float, length: 8, scale: 2 }
+    discount_price:      { type: float, length: 8, scale: 2 }
+    weight:           { type: string(10) }
+    pic:              { type: string(512) }
+    total_num:            { type: integer, unsigned: true }
+    lock_num:            { type: integer, unsigned: true }
+    storehouse_id:            { type: integer, unsigned: true }
+    status:            { type: integer(1), unsigned: true }
+    wupdate_time:            { type: integer(11), unsigned: true }
+    sort:              { type: integer, unsigned: true, default: 0}
+
+KaluliTags:
+  tableName: kll_tags
+  connection: kaluli
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    type:               { type: integer, unsigned: true }
+    name:               { type: string(128) }
+    weight:             { type: integer, unsigned: true }
+
+
+KaluliTagsRelate:
+  tableName: kll_tags_relate
+  connection: kaluli
+  columns:
+    id:                { type: integer, unsigned: true, primary: true, autoincrement: true }
+    type:              { type: integer(2), unsigned: true }
+    pid:               { type: integer, unsigned: true }
+    tag_id:            { type: integer, unsigned: true }
+
+KaluliMainOrder:
+  actAs:
+    Timestampable: ~
+  connection: kaluli
+  tableName: kll_main_order
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: integer(10)
+      unsigned: true
+    ibilling_number:
+      type: string(50)
+    hupu_uid:
+      type: integer
+      unsigned: true
+    hupu_username:
+      type: string(30)
+    express_fee:
+      type: float
+      length: 8
+      scale: 2
+    total_price:
+      type: float
+      length: 8
+      scale: 2
+    original_price:
+      type: float
+      length: 8
+      scale: 2
+    marketing_fee:
+      type: float
+      length: 8
+      scale: 2
+    coupon_fee:
+      type: float
+      length: 8
+      scale: 2
+    duty_fee:
+      type: float
+      length: 8
+      scale: 2
+      default: 0.00
+    number:
+      type: integer(2)
+      unsigned: true
+      default: 0
+    order_time:
+      type: datetime
+    pay_time:
+      type: datetime
+    pay_type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    refund:
+      type: float
+      length: 8
+      scale: 2
+    source:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    status:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    trade_no:
+      type: string(50)
+    is_activity:
+      type: integer(1)
+    finance_audit:
+      type: tinyint(2)
+      default: 0
+  indexes:
+    order_number:
+      fields: [ order_number ]
+      type: unique
+    ibilling_number:
+      fields: [ ibilling_number ]
+      type: unique
+    hupu_uid:
+      fields: [hupu_uid]
+
+KaluliMainOrderAttr:
+  actAs:
+    Timestampable: ~
+  connection: kaluli
+  tableName: kll_main_order_attr
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: integer(10)
+      unsigned: true
+    refund_price:
+      type: float
+      length: 8
+      scale: 2
+    refund_express_fee:
+      type: float
+      length: 8
+      scale: 2
+    address_attr:
+      type: string(2000)
+    is_remind:
+      type: integer(1)
+      unsigned: true
+      default: 1
+    remark:
+      type: string(200)
+    coupon_id:
+      type: integer(10)
+  indexes:
+    order_number:
+      fields: [ order_number ]
+      type: unique
+
+KaluliOrder:
+  actAs:
+    Timestampable: ~
+  connection: kaluli
+  tableName: kll_order
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: integer(10)
+      unsigned: true
+    ibilling_number:
+      type: string(50)
+    title:
+      type: string(200)
+      notnull: true
+      default: ""
+    product_id:
+      type: integer
+      unsigned: true
+    goods_id:
+      type: integer
+      unsigned: true
+    domestic_express_type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    domestic_order_number:
+      type: string(50)
+    domestic_express_time:
+      type: integer
+      unsigned: true
+      default: 0
+    is_gift:
+      type: integer
+      unsigned: true
+      default: 0
+    depot_type:
+      type: integer
+      unsigned: true
+      default: 0
+    express_fee:
+      type: float
+      length: 8
+      scale: 2
+    total_price:
+      type: float
+      length: 8
+      scale: 2
+    price:
+      type: float
+      length: 8
+      scale: 2
+    number:
+      type: integer(2)
+      unsigned: true
+      default: 0
+    marketing_fee:
+      type: float
+      length: 8
+      scale: 2
+    duty_fee:
+      type: float
+      length: 8
+      scale: 2
+    order_time:
+      type: datetime
+    pay_time:
+      type: datetime
+    receive_time:
+      type: datetime
+    status:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    pay_status:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    source:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    hupu_uid:
+      type: integer
+      unsigned: true
+    hupu_username:
+      type: string(30)
+    is_comment:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    ware_status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+    is_activity:
+      type: integer(1)
+      unsigned: true
+  indexes:
+    order_number:
+      fields: [ order_number ]
+    hupu_uid:
+      fields: [hupu_uid]
+    hupu_username:
+      fields: [hupu_username]
+    goods_id:
+      fields: [goods_id]
+    order_time:
+      fields: [order_time]
+    status:
+      fields: [status]
+    ware_status:
+      fields: [ware_status]
+
+KaluliOrderAttr:
+  actAs:
+    Timestampable: ~
+  connection: kaluli
+  tableName: kll_order_attr
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: integer(10)
+      unsigned: true
+    order_id:
+      type: integer(10)
+      unsigned: true
+    code:
+      type: string(100)
+    attr:
+      type: string(500)
+    refund_price:
+      type: float
+      length: 8
+      scale: 2
+    refund_express_fee:
+      type: float
+      length: 8
+      scale: 2
+    refund:
+      type: float
+      length: 8
+      scale: 2
+    ware_type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+    ware_id:
+      type: integer(16)
+      unsigned: true
+      notnull: true
+    ware_code:
+      type: string(20)
+      notnull: true
+  indexes:
+    order_number:
+      fields: [ order_number ]
+KaluliOrderWarelog:
+  actAs:
+    Timestampable: ~
+  connection: kaluli
+  tableName: kll_order_warelog
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: string(255)
+      unsigned: true
+    order_id:
+      type: integer(10)
+      unsigned: true
+    msg:
+      type: string(255)
+    hupu_uid:
+      type: integer(8)
+      notnull: true
+    username:
+      type: string(20)
+      notnull: true
+    ware_type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+    status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+    ware_order_type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+  indexes:
+    order_number:
+      fields: [ order_number ]
+    order_id:
+      fields: [ order_id ]
+KaluliRefundDetail:
+  actAs:
+    Timestampable: ~
+  connection: kaluli
+  tableName: kll_refund_detail
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: integer(10)
+      unsigned: true
+    order_id:
+      type: integer(10)
+      unsigned: true
+    ibilling_number:
+      type: string(50)
+    refund:
+      type: float
+      length: 8
+      scale: 2
+    refund_remark:
+      type: string(200)
+    type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    pay_type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    status:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    grant_uid:
+      type: integer
+      unsigned: true
+    grant_username:
+      type: string(50)
+  indexes:
+    order_number:
+      fields: [ order_number ]
+
+KaluliOrderHistory:
+  actAs:
+    Timestampable: ~
+  tableName: kll_order_history
+  connection: kaluli
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: integer(10)
+      unsigned: true
+    hupu_uid:
+      type: integer
+      unsigned: true
+    hupu_username:
+      type: string(30)
+    type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    explanation:
+      type: string(200)
+    grant_uid:
+      type: integer
+      unsigned: true
+    grant_username:
+      type: string(50)
+  indexes:
+    order_number:
+      fields: [order_number]
+    hupu_uid:
+      fields: [hupu_uid]
+
+KaluliOrderLogistics:
+  actAs:
+    Timestampable: ~
+  tableName: kll_order_logistics
+  connection: kaluli
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    to_city:
+      type: string(50)
+    order_number:
+      type: integer(10)
+      unsigned: true
+    express_number:
+      type: string(50)
+    domestic_status:
+      type: string(30)
+    excompany:
+      type: string(30)
+    abroad: 
+      type: string(5000)
+    content:
+      type: string(5000)
+  indexes:
+    order_number:
+      fields: [order_number]
+    express_number:
+      fields: [express_number]
+
+KaluliRefundApply:
+  actAs:
+    Timestampable: ~
+  connection: kaluli
+  tableName: kll_refund_apply
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: integer(10)
+      unsigned: true
+    order_id:
+      type: integer(10)
+      unsigned: true
+    refund:
+      type: float
+      length: 8
+      scale: 2
+    refund_remark:
+      type: string(300)
+    check_remark:
+      type: string(300)
+    express_type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    express_number:
+      type: string(50)
+    pic_attr:
+      type: string(2000)
+    type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    status:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    grant_uid:
+      type: integer
+      unsigned: true
+    grant_username:
+      type: string(50)
+  indexes:
+    order_number:
+      fields: [ order_number ]
+
+KaluliKeyValue:
+  actAs:
+    Timestampable: ~
+  tableName: kll_key_value
+  connection: kaluli
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    tkey:
+      type: string(100)
+    tvalue:
+      type: string(20000)
+  indexes:
+    tkey:
+      fields: [tkey]
+
+KaluliShoppingCart:
+  actAs:
+    Timestampable: ~
+  tableName: kll_shopping_cart
+  connection: kaluli
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    hupu_uid:
+      type: integer
+      unsigned: true
+    hupu_username:
+      type: string(30)
+    product_id:
+      type: integer
+      unsigned: true
+    goods_id:
+      type: integer
+      unsigned: true
+    number:
+      type: integer
+      unsigned: true
+    source:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+  indexes:
+    hupu_uid:
+      fields: [hupu_uid]
+
+KllOpenimInfo:
+  tableName: kll_openim_info
+  connection: kaluli
+  columns:
+    id:
+      type: integer(20)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    user_id:
+      type: integer(20)
+      unsigned: true
+    client_str:
+      type: string(128)
+    cookie_str:
+      type: string(40)
+    open_username:
+      type: string(20)
+      notnull: true
+    open_password:
+      type: string(64)
+      notnull: true
+  indexes:
+    client_str:
+      fields: [client_str]
+    cookie_str:
+      fields: [cookie_str]
+    user_id:
+      fields: [user_id]
+KaluliLipinka:
+  actAs:
+    Timestampable: ~
+  tableName: kll_lipinka
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    title:
+      type: string(255)
+      notnull: true
+      default: ""
+    apply_user_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    activity_type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    for_what:
+      type: string(255)
+      notnull: true
+      default: ""
+    verify_user_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    stime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    etime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    amount:
+      type: integer(6)
+      unsigned: true
+      notnull: true
+      default: 0
+    status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    is_delete:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+
+KaluliOptLog:
+  actAs:
+    Timestampable: ~
+  tableName: kll_opt_log
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    opt_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    opt_uid:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    opt_uri:
+      type: string(255)
+      unsigned: true
+      notnull: true
+      default: 0
+    opt_json:
+      type: text
+    opt_time:
+      type: integer(11)
+      unsigned: true
+    last_login_ip:
+      type: string(255)
+      unsigned: true
+      notnull: true
+      default: 0
+
+KaluliLipinkaCard:
+  actAs:
+    Timestampable: ~
+  tableName: kll_lipinka_card
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    record_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    lipinka_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    account:
+      type: string(10)
+      notnull: true
+      default: ""
+    user_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    is_large:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    large_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    postpone_type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 1
+    postpone_day:
+      type: integer(6)
+      unsigned: true
+      notnull: true
+      default: 0
+    overdue_time:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    stime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    etime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    create_type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    sync_status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    amount:
+      type: integer(6)
+      unsigned: true
+      notnull: true
+      default: 0
+    card_limit:
+      type: string(255)
+      notnull: true
+      default: ""
+  indexes:
+    lipinka_id:
+      fields: [lipinka_id]
+    record_id:
+      fields: [record_id]
+    user_id:
+      fields: [user_id]
+    account:
+      fields: [account]
+    large_id:
+      fields: [large_id]
+KaluliLipinkaLarge:
+  actAs:
+    Timestampable: ~
+  tableName: kll_lipinka_large
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    lipinka_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    record_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    card:
+      type: string(10)
+      notnull: true
+      default: ""
+    num:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    no_receive:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    postpone_type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    postpone_day:
+      type: integer(6)
+      unsigned: true
+      notnull: true
+      default: 0
+    overdue_time:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    stime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    etime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+  indexes:
+    lipinka_id:
+      fields: [lipinka_id]
+    record_id:
+      fields: [record_id]
+KaluliLipinkaRecord:
+  actAs:
+    Timestampable: ~
+  tableName: kll_lipinka_record
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    lipinka_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    is_large:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    large_id:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    postpone_type:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 1
+    postpone_day:
+      type: integer(6)
+      unsigned: true
+      notnull: true
+      default: 0
+    overdue_day:
+      type: integer(6)
+      unsigned: true
+      notnull: true
+      default: 0
+    overdue_time:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    stime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    etime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    amount:
+      type: integer(6)
+      unsigned: true
+      notnull: true
+      default: 0
+    num:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    accept_uids:
+      type: string(5000)
+      notnull: true
+      default: ""
+    group_id:
+      type: integer(10)
+      unsigned: true
+    is_success:
+       type: integer(1)
+       unsigned: true
+       notnull: true
+       default: 0
+    card_limit:
+      type: string(255)
+      notnull: true
+      default: ""
+  indexes:
+    lipinka_id:
+      fields: [lipinka_id]
+    large_id:
+      fields: [large_id]
+      fields: [user_id]
+
+KllActivity:
+  actAs:
+    Timestampable: ~
+  tableName: kll_activity
+  connection: kaluli
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    root_type:             { type: integer(1),unsigned: true}
+    title:           { type: string(200), notnull: true }
+    total:             { type: integer(10)}
+    list_id:           { type: integer, unsigned: true }
+    limits:             { type: integer(2)}
+    recevied:             { type: integer(10)}
+    start_date:       {type: datetime }
+    expiry_date:       {type: datetime }
+    img_path:          { type: string(200)}
+    content:          { type: string(5000)}
+    grant_uid:         {type: integer, unsigned: true }
+    grant_username:    {type: string(50) }
+    mart:               {type: string(50) }
+    receive_url:        {type: string(250) }
+    is_delete:     { type: boolean, default: 0 }
+
+KllCouponsDetail:
+  connection: kaluli
+  tableName: kll_coupons_detail
+  columns:
+    id:                { type: integer, unsigned: true, primary: true, autoincrement: true }
+    account:           { type: string(30), notnull: true }
+    stime:              { type: integer, unsigned: true }
+    etime:              { type: integer, unsigned: true }
+    status:             { type: integer(1), unsigned: true, default: 0 }
+    activity_id:       { type: integer, unsigned: true, notnull: true }
+
+
+KllCouponsRecevied:
+  tableName: kll_coupons_recevied
+  connection: kaluli
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    root_type:          { type: integer(1), unsigned: true }
+    activity_id:       { type: integer, unsigned: true }
+    list_id:           { type: integer, unsigned: true }
+    detail_id:         { type: integer, unsigned: true }
+    account:           { type: string(30), notnull: true }
+    stime:              { type: integer, unsigned: true }
+    etime:              { type: integer, unsigned: true }
+    hupu_uid:           { type: integer, unsigned: true }
+    hupu_username:      { type: string(30) }
+    recevied_date:       { type: integer(11), unsigned: true, default: 0 }
+    card_limit:          { type: string(255) }
+    status:             { type: integer(1), unsigned: true }
+    record_id:       { type: integer, unsigned: true }
+  indexes:
+    activity_id:
+      fields: [activity_id]
+    hupu_uid: 
+      fields: [hupu_uid]
+
+KllCommentTags:
+  connection: kaluli
+  tableName: kll_comment_tags
+  columns:
+    id:                { type: integer, unsigned: true, primary: true, autoincrement: true }
+    root_name:         { type: string(128), notnull: true }
+    child_name:        { type: string(128), notnull: true }
+    attrs:             { type: text }
+    status:            { type: integer(1), unsigned: true, default: 0 }
+
+KllCommentTagsCount:
+  connection: kaluli
+  tableName: kll_comment_tags_count
+  columns:
+    id:                { type: integer, unsigned: true, primary: true, autoincrement: true }
+    product_id:        { type: integer, unsigned: true }
+    tag_id:            { type: integer, unsigned: true }
+    comment_id:        { type: integer, unsigned: true }
+
+KllCommentTags:
+  connection: kaluli
+  tableName: kll_comment_tags
+  columns:
+    id:                { type: integer, unsigned: true, primary: true, autoincrement: true }
+    root_name:         { type: string(128), notnull: true }
+    child_name:        { type: string(128), notnull: true }
+    attrs:             { type: text }
+    status:            { type: integer(1), unsigned: true, default: 0 }
+
+KllCommentTagsCount:
+  connection: kaluli
+  tableName: kll_comment_tags_count
+  columns:
+    id:                { type: integer, unsigned: true, primary: true, autoincrement: true }
+    product_id:        { type: integer, unsigned: true }
+    tag_id:            { type: integer, unsigned: true }
+    comment_id:        { type: integer, unsigned: true }
+
+KllMq:
+  connection: kaluli
+  tableName: kll_mq
+  columns:
+    id:               { type: integer, unsigned: true, primary: true, autoincrement: true }
+    msg_type:         { type: string(200), unsigned: true }
+    msg_id:           { type: string(100), unsigned: true }
+    msg_channel:      { type: string(50), unsigned: true }
+    msg_body:         { type: text }
+    msg_status:       { type: integer(16), unsigned: true }
+    msg_audit:        { type: integer(16), unsigned: true }
+    order_number:     { type: string(100) }
+    billing_number:   { type: string(100) }
+    zt:               { type: integer(11)}
+    msg_time:         { type: timestamp }
+    msg_response:     { type: text }
+
+KllOrderSynApi:
+  connection: kaluli
+  tableName: kll_order_syn_api
+  columns:
+    id:               { type: integer, unsigned: true, primary: true, autoincrement: true }
+    zt:               { type: integer(11) }
+    order_number:     { type: string(100) }
+    send_gj:          { type: integer(11) }
+    send_gj_date:     { type: timestamp }
+    send_hg:          { type: integer(11) }
+    send_hg_date:     { type: timestamp }
+    send_zz:          { type: integer(11) }
+    send_zz_date:     { type: timestamp }
+    syn_date:         { type: timestamp }
+    logisticJSON:     { type: string(255) }
+    logisticStepInfoJSON: { type: string(255) }
+    send_alipay:      {type: integer(11), unsigned: true }
+    send_alipay_date: { type: timestamp }
+
+
+
+KllComment:
+  actAs:
+    Timestampable: ~
+  tableName: kll_comment
+  connection: kaluli
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    cid:                { type: integer,unsigned: true, default: 0 }
+    product_id:         { type: integer,unsigned: true}
+    user_id:            { type: integer,unsigned: true}
+    user_name:          { type: string(128)}
+    content:            { type: text }
+    imgs:               { type: text }
+    tags_attr:          { type: string(512) }
+    attr:               { type: string(256) }
+    status:             { type: integer(1), unsigned: true, default: 1 }
+    private:            { type: integer(1), unsigned: true, default: 0 }
+
+
+KllCommentTagsDetail:
+  connection: kaluli
+  tableName: kll_comment_tags_detail
+  columns:
+    id:                 { type: integer, unsigned: true, primary: true, autoincrement: true }
+    name:               { type: string(100), unique: true, notnull: true }
+    is_hide:            { type: boolean, default: 0 }
+KllOrderActivityDetail:
+  actAs:
+    Timestampable: ~
+  tableName: kll_order_activity_detail
+  connection: kaluli
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: string(50)
+    activity_id:
+      type: integer(10)
+      unsigned: true
+    attr:
+      type: string(10000)
+    type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+    refund_type:
+      type: integer(1)
+      unsigned: true
+      default: 0
+  indexes:
+    order_number: 
+      fields: [order_number]
+
+KllMarketingActivity:
+  tableName: kll_marketing_activity
+  actAs:
+      Timestampable: ~
+  connection: kaluli
+  columns:
+    id:              { type: integer, unsigned: true, primary: true, autoincrement: true }
+    title:            { type: string(128) }
+    mode:             { type: integer(1), unsigned: true }
+    scope:             { type: integer(1), unsigned: true }
+    attr1:             { type: string(512) }
+    attr2:             { type: string(512) }
+    status:             { type: integer(1), unsigned: true }
+    stime:            { type: integer, unsigned: true }
+    etime:            { type: integer, unsigned: true }
+    intro:             { type: string(128) }
+    group_id:         { type: integer, unsigned: true }
+    type:             { type: integer(1), unsigned: true }
+    type_limit:       { type: integer, unsigned: true }
+    url:              { type: string(255) }
+    new_version:            { type: integer, unsigned: true }
+    current_version:            { type: integer, unsigned: true }
+    ing_version:            { type: integer, unsigned: true }
+  indexes:
+    idx_scope:
+       fields: [scope]
+KllActivitySet:
+  tableName: kll_activity_set
+  connection: kaluli
+  actAs:
+    Timestampable: ~
+  columns:
+    id:              { type: integer, unsigned: true, primary: true, autoincrement: true }
+    title:             { type: string(64) }
+    key:             { type: string(64) }
+    role:            { type: string(2000) }
+    note:            { type: string(512) }
+    remarks:         { type: string(256) }
+    version:         { type: integer(1) }
+    status:          { type: integer(1), unsigned: true }
+  indexes:
+    idx_key:
+       fields: [key]
+
+
+KllMarketingActivityGroup:
+  tableName: kll_marketing_activity_group
+  connection: kaluli
+  columns:
+    id:              { type: integer, unsigned: true, primary: true, autoincrement: true }
+    activity_id:            { type: integer, unsigned: true }
+    item_id:            { type: integer, unsigned: true }
+    stime:            { type: integer, unsigned: true }
+    etime:            { type: integer, unsigned: true }
+    version:            { type: integer, unsigned: true }
+  indexes:
+    idx_item_id:
+       fields: [item_id]
+ 
+
+
+KllItemTradelog:
+  tableName: kll_item_tradelog
+  connection: kaluli
+  columns:
+    id:              { type: integer, unsigned: true, primary: true, autoincrement: true }
+    product_id:      { type: integer, unsigned: true }
+    username:             { type: string(30) }
+    attr:            { type: string(255) }
+    order_id:           { type: integer, unsigned: true }
+    num:          { type: integer, unsigned: true }
+    created_time:  { type: integer, unsigned: true }
+  indexes:
+    product_id_order_idx:
+       fields: [product_id,order_id]
+
+KllItemTradelogTask:
+  tableName: kll_item_tradelog_task
+  connection: kaluli
+  columns:
+    id:              { type: integer, unsigned: true, primary: true, autoincrement: true }
+    product_id:      { type: integer, unsigned: true }
+    total_num:       { type: integer, unsigned: true }
+    current_num:      { type: integer, unsigned: true }
+    end_time:          { type: integer, unsigned: true }
+    updated_time:      { type: integer, unsigned: true }
+    status:            { type: integer(1), unsigned: true }
+  indexes:
+    status_idx:
+       fields: [status]
+ 
+
+KaluliOrderMarketingDetail:
+  actAs:
+    Timestampable: ~
+  tableName: kll_order_marketing_detail
+  connection: kaluli
+  columns:
+    id:
+      type: integer(10)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    order_number:
+      type: string(50)
+    marketing_id:
+      type: integer(10)
+      unsigned: true
+    attr:
+      type: string(10000) 
+KllCardWare:
+  actAs:
+    Timestampable: ~
+  tableName: kll_cardware
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    code:
+      type: string(128)
+      notnull: true
+      default: ""
+    title:
+      type: string(255)
+      notnull: true
+      default: ""
+    hupu_uid:
+      type: integer
+      unsigned: true
+    hupu_username:
+      type: string(30)
+    status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    stime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    etime:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    phone:
+      type: string(32)
+      notnull: true
+      default: ""
+    is_delete:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+kllCardwareData:
+  actAs:
+    Timestampable: ~
+  tableName: kll_cardware_data
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    w_id:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+    amount:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+    attr:
+      type: string(3000)
+    alert_num:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    is_alert:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    cache_key:
+      type: string(64)
+      notnull: true
+      default: ""
+KllCardmultiple:
+  actAs:
+    Timestampable: ~
+  tableName: kll_cardmultiple
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    code:
+      type: string(64)
+      notnull: true
+      default: ""
+    title:
+      type: string(255)
+      notnull: true
+      default: ""
+    hupu_uid:
+      type: integer
+      unsigned: true
+    hupu_username:
+      type: string(30)
+    status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    cardware_code:
+      type: string(32)
+    is_success:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    alert_num:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: 0
+    is_alert:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+    phone:
+      type: string(32)
+      notnull: true
+      default: ""
+    card_number:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+    read_number:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+kllCardmultipleData:
+  actAs:
+    Timestampable: ~
+  tableName: kll_cardmultiple_data
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    m_card:
+      type: string(64)
+      notnull: true
+      default: ""
+    m_id:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+    card_data:
+      type: string(65535)
+      notnull: true
+      default: ""
+    uid:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+    u_time:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+    status:
+      type: integer(1)
+      unsigned: true
+      notnull: true
+      default: 0
+kllLipinkaLog:
+  actAs:
+    Timestampable: ~
+  tableName: kll_lipinka_log
+  connection: kaluli
+  columns:
+    id:
+      type: integer(8)
+      primary: true
+      unsigned: true
+      notnull: true
+      autoincrement: true
+    action_id:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+    table_id:
+      type: integer(11)
+      unsigned: true
+      notnull: true
+      default: 0
+    message:
+      type: string(255)
+      notnull: true
+      default: ""
+    hupu_uid:
+      type: integer
+      unsigned: true
+    hupu_username:
+      type: string(30)
+kllActivityTradeLog:
+  actAs:
+    Timestampable: ~
+  tableName: kll_activity_trade_log
+  connection: kaluli
+  columns:
+    id:
+      type: integer(11)
+      primary: true
+      notnull: true
+      autoincrement: true
+    hupu_uid:
+      type: integer
+    product_id:
+      type: integer(10)
+
+KllDictionary:
+  actAs:
+    Timestampable: ~
+  tableName: kll_dictionary
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    kll_type:           { type: integer, notnull: true }
+    kll_code:           { type: string(40) }
+    str_value:          { type: string(100) }
+    int_value:          { type: integer }
+    is_special:         { type: integer(4), default: 0 }
+
+kllItemCustom:
+  tableName: kll_item_custom
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    warranty_days:     { type: integer }
+    goods_number:           { type: string(50) }
+    reg_custom:          { type: string(50) }
+    reg_inspection:          { type: string(50) }
+    reg_app_date:         { type: datetime }
+    custom_code:        { type: string(50) }
+    inspection_code:    { type: string(50) }
+    hs_code:              { type: string(50) }
+    tax_code:             { type: string(50) }
+    stock_number:         { type: string(50) }
+    unit_price:          { type: double }
+    unit:                 { type: string(50) }
+    original:             { type: string(200) }
+    code:                 { type: string(10) }
+    goods_id:            { type: string(10) }
+    product_id:          { type: string(10) }
+
+KllLipinkaRecordGroup:
+  actAs:
+    Timestampable: ~
+  tableName: kll_lipinka_record_group
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    record_id:          { type: integer, unsigned: true }
+    item_id:           { type: integer, unsigned: true }
+
+#��˰��
+kllOrderCustoms:
+  tableName: kll_order_customs
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    logisticsId:     { type: string(32) }
+    order_number:           { type: integer(10) }
+    order_price:          { type: float, length: 8,scale: 2  }
+    customs_dutys:          { type: float, length: 8,scale: 2 }
+    customs_img:         { type: string(512) }
+    customs_rate:        { type: float, length: 8,scale: 2 }
+    cost_unit:    { type: int(4) }
+    status:              { type: int(4) }
+    check_status:             { type: int(4) }
+    create_time:         { type: timestamp }
+    check_time:          { type: datetime }
+
+#�������ñ�����֣�
+kllOrderChargeDetails:
+  tableName: kll_order_charge_details
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    logisticsId:     { type: string(32) }
+    order_number:           { type: integer(10) }
+    logistics_cost:          { type: float, length: 8,scale: 2  }
+    package_cost:          { type: float, length: 8,scale: 2 }
+    operating_cost:          { type: float, length: 8,scale: 2 }
+    insurance_cost:          { type: float, length: 8,scale: 2 }
+    verification_cost:          { type: float, length: 8,scale: 2 }
+    other_cost:          { type: float, length: 8,scale: 2 }
+    cost_unit:    { type: int(4) }
+    remark:             { type: string(512) }
+    create_time:         { type: timestamp }
+KllSendCouponVip:
+  tableName: kll_send_coupon_vip
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    opt_uid:               { type: integer }
+    title:               { type: string(100) }
+    position:            { type: integer }
+    record_id:           { type: string(100) }
+    state:               { type: integer }
+    s_time:              { type: datetime }
+    e_time:              { type: datetime }
+KllSendCouponOrder:
+  tableName: kll_send_coupon_order
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    opt_uid:             { type: integer }
+    title:               { type: string(100) }
+    detail:              { type: string(150) }
+    position:            { type: integer }
+    record_id:           { type: string(100) }
+    state:               { type: integer }
+    s_time:              { type: datetime }
+    e_time:              { type: datetime }
+    channel_id:          { type: integer }
+    type:                { type: string(50) }
+    
+KllSendMsg:
+  tableName: kll_send_msg
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    mobile:               { type: string(100) }
+    opt_uid:               { type: integer }
+    nums:               { type: integer }
+    stime:              { type: integer }
+
+    
+KllCustomLogs:
+  tableName: kll_custom_logs
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    contents:               { type: string(100) }
+    opt_uid:               { type: integer }
+    order_number:               { type: integer }
+    stime:              { type: datetime }
+
+kllOrderBirdex:
+  tableName: kll_order_birdex
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    zt:                  { type: integer(10) }
+    send_birdex:         { type: integer(10) }
+    ibilling_number:     { type: string(255) }
+    order_number:        { type: string(255) }
+    update_time:         { type: timestamp }
+    create_time:         { type: timestamp }
+    send_birdex_date:    { type: timestamp }
+
+KllUser:
+  tableName: kll_user
+  connection: kaluli
+  columns:
+    user_id:             { type: integer, unsigned: true, primary: true, autoincrement: true }
+    user_name:           { type: string(255) }
+    password:            { type: string(255) }
+    mobile:              { type: integer(20) }
+    source:              { type: tinyint(2) }
+    ct_time:             { type: integer(11) }
+    up_time:             { type: integer(11) }
+    last_login_time:     { type: integer(11) }
+
+KllUserProperty:
+  tableName: kll_user_property
+  connection: kaluli
+  columns:
+    user_id:             { type: integer, unsigned: true, primary: true }
+    user_name:           { type: string(255) }
+    mail:                { type: string(255) }
+    status:              { type: tinyint(3) }
+    sex:                 { type: tingyint(2) }
+    province:            { type: integer(8) }
+    city:                { type: integer(8) }
+    profession:          { type: integer(10) }
+    info:                { type: string(10000) }
+    register_time:       { type: integer(11) }
+    last_login_time:     { type: integer(11) }
+    pwd_level:           { type: integer(3) }
+
+
+KllUserUnion:
+  tableName: kll_user_union
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    user_id:             { type: integer(11) }
+    type:                { type: tinyint(3) }
+    union_id:            { type: varchar(255) }
+    info:                { type: string(10000) }
+    union_user_name:     { type: string(255) }
+    ct_time:             { type: integer(11) }
+    up_time:             { type: integer(11) }
+
+KllActivityCoupon:
+  tableName: kll_activity_coupon
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    user_id:             { type: integer(11) }
+    open_id:             { type: string(50) }
+    mobile:              { type: bigint(11) }
+    activity_id:         { type: tinyint(3) }
+    user_status:         { type: tinyint(2) }
+    user_activation:     { type: tinyint(2) }
+    is_new:              { type: tinyint(2) }
+    create_time:         { type: integer(11) }
+    inviter:             { type: integer(11) }
+
+KllHupuApicontent:
+  tableName: kll_hupu_apicontent
+  connection: kaluli
+  columns:
+    kll_hupu_id:         { type: integer, unsigned: true, primary: true, autoincrement: true }
+    kll_hupu_title:      { type: string(100) }
+    kll_hupu_subtitle:   { type: string(200) }
+    kll_hupu_imgpath:    { type: string(300) }
+    kll_hupu_time:       { type: timestamp }
+    kll_hupu_url:        { type: string(200) }
+    kll_hupu_type:       { type: integer(2) }
+    kll_hupu_status:     { type: integer(2) }
+    kll_hupu_origin:     { type: integer(10))}
+
+KllWarehousesTax:
+  tableName: kll_warehouses_tax
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    warehouse_id:        { type: integer(11) }
+    tax_start:           { type: integer(11) }
+    tax_rate:            { type: float, length: 8, scale: 2 }
+    tax_note:            { type: string(255) }
+    tax_rule:            { type: text }
+    status:              { type: int(2) }
+
+KllWarehousesExpress:
+  tableName: kll_warehouses_express
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    warehouse_id:        { type: integer(11) }
+    express_id:          { type: integer(11) }
+    status:              { type: integer(2) }
+    radio:               { type: float, length: 8, scale: 2 }
+    is_default:          { type: tinyint(2)}
+    is_default:          { type: integer(2) }
+    ct_time:             { type: timestamp }
+
+KllWarehousesExpressArea:
+  tableName: kll_warehouses_express_area
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    ware_express_id:     { type: integer(11) }
+    provinces:            { type: integer(11) }
+    is_default:          { type: integer(2) }
+    first_price:         { type: float, length: 8, scale: 2 }
+    additional_price:    { type: float, length: 8, scale: 2 }
+    ct_time:             { type: timestamp }
+
+KllWarehousesExpressAreaProvince:
+  tableName: kll_warehouses_express_area_province
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    ware_express:        { type: integer(11) }
+    ware_express_area_id: { type: integer(11) }
+    province:           { type: integer(11) }
+
+
+KllWarehousesFee:
+  tableName: kll_warehouses_fee
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    warehouse_id:        { type: integer(11) }
+    total_price:         { type: float, length: 8, scale: 2 }
+    note:                { type: string(255) }
+    ct_time:             { type: timestamp }
+
+KllItemCountLog:
+  tableName: kll_item_count_log
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    item_id:             { type: integer }
+    pv:                  { type: integer }
+    uv:                  { type: integer }
+    time:                { type: integer }
+
+KllXbuy:
+  tableName: kll_xbuy
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true,autoincrement: true }
+    title:               { type: string(255) }
+    description:         { type: string(1000) }
+    detail_url:          { type: string(100) }
+    status:              { type: integer(4) }
+    start_time:          { type: datetime }
+    end_time:            { type: datetime }
+    ct_time:             { type: timestamp }
+
+KllXbuyItem:
+  tableName: kll_xbuy_item
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true,autoincrement: true }
+    activity_id:         { type: integer }
+    item_id:             { type: integer }
+    number:              { type: integer }
+    price:               { type: float, length: 8, scale: 2 }
+    status:              { type: integer(4) }
+    title:               { type: string(255) }
+    origin_price:        { type: float, length: 8, scale: 2 }
+
+KllXbuyItemLog:
+  tableName: kll_xbuy_item_log
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true,autoincrement: true }
+    uid:                 { type: integer }
+    activity_id:         { type: integer }
+    item_id:             { type: integer }
+    number:              { type: integer }
+    ct_time:             { type: timestamp }
+
+KllItemBrand:
+  tableName: kll_item_brand
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    name:                { type: string(128) }
+    weight:              { type: integer }
+    logo:                { type: string(255) }
+    banner:              { type: string(255) }
+    place:               { type: string(50) }
+    place_en:            { type: string(50) }
+    place_flag:          { type: string(255) }
+    description:         { type: text }
+    status:              { type: integer(2) }
+    ct_time:             { type: timestamp }
+
+KllMemberBenefits:
+  tableName: kll_member_benefits
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true,autoincrement: true }
+    code:                { type: string(255) }
+    title:               { type: string(255) }
+    abstract:            { type: string(255) }
+    link:                { type: string(255) }
+    times:               { type: integer }
+    type:                { type: tinyint(3) }
+    range:               { type: tinyint(3) }
+    discount:            { type: tinyint(3) }
+    toplimit:            { type: float, length: 8, scale: 2}
+    start_time:          { type: integer }
+    end_time:            { type: integer }
+    status:              { type: tinyint }
+
+KllMemberBenefitsOrder:
+  tableName: kll_member_benefits_order
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true,autoincrement: true }
+    mb_id:               { type: integer }
+    order_number:        { type: bigint }
+    status:              { type: tinyint }
+    ct_time:             { type: integer }
+
+KllMemberBenefitsSku:
+  tableName: kll_member_benefits_sku
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true,autoincrement: true }
+    mb_id:               { type: integer }
+    sku_id:              { type: integer }
+
+KllWiki:
+  actAs:
+    Timestampable: ~
+  tableName: kll_wiki
+  connection: kaluli
+  columns:
+    id:                    { type: integer, unsigned: true, primary: true, autoincrement: true }
+    title:                 { type: string(500) }
+    banner:                { type: string(500) }
+    content:               { type: text }
+    qa:                    { type: string(1000) }
+    relate_article:        { type: string(50) }
+
+#达人渠道信息表
+KllKolChannel:
+  tableName: kll_kol_channel
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    title:               { type: string(255) }
+    abstract:            { type: string(255) }
+    channel_code:        { type: string(50) }
+    times:               { type: integer }
+    range:               { type: tinyint(3) }
+    discount:            { type: tinyint(3) }
+    toplimit:            { type: float, length: 8, scale: 2}
+    start_time:          { type: integer }
+    end_time:            { type: integer }
+    commision:           { type: tinyint }
+    status:              { type: tinyint }
+
+#渠道商品配置表
+KllKolChannelSku:
+  tableName: kll_kol_channel_sku
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true,autoincrement: true }
+    kid:                 { type: integer }
+    item_id:             { type: integer }
+
+#达人信息表
+KllKol:
+  tableName: kll_kol
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true, autoincrement: true }
+    user_id:             { type: integer }
+    abstract:            { type: string(255) }
+    home_page:           { type: string(100) }
+    channel_id:          { type: tinyint, unsigned: true }
+    benefits_id:         { type: tinyint, unsigned: true }
+    account:             { type: string(100) }
+    status:              { type: tinyint, unsigned: true }
+    commision:           { type: tinyint }
+    remark:              { type: string(1000) }
+    ct_time:             { type: timestamp }
+    user_name:           { type: string(255) }
+    mobile:              { type: bigint }
+    nick_name:           { type: string(30) }
+    head_image:          { type: string(255) }
+#kol达人订单表
+KllKolOrder:
+  actAs:
+    Timestampable: ~
+  tableName: kll_kol_order
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true,autoincrement: true }
+    order_number:        { type: bigint, unsigned: true }
+    sub_order_id:        { type: integer, unsigned: true }
+    order_time:          { type: integer, unsigned: true }
+    total_price:         { type: float, length: 8, scale: 2}
+    main_total_price:    { type: float, length: 8, scale: 2}
+    is_new_custom:       { type: tinyint }
+    channel:             { type: tinyint }
+    item_id:             { type: integer, unsigned: true }
+    item_title:          { type: string(200) }
+    commision:           { type: float, length: 8, scale: 2}
+    commision_rate:      { type: tinyint }
+    kol_id:              { type: integer }
+    user_id:             { type: integer }
+    status:              { type: tinyint }
+    flag:                { type: tinyint }
+    user_name:           { type: string(100) }
+    channel_id:          { type: integer }
+
+#kol达人账户
+KllKolAccount:
+  actAs:
+    Timestampable: ~
+  tableName: kll_kol_account
+  connection: kaluli
+  columns:
+    kol_id:              { type: integer, unsigned: true, primary: true }
+    account:             { type: float, length: 8, scale: 2}
+    type:                { type: tinyint }
+
+#kol达人账户流水
+KllKolAccountLog:
+  tableName: kll_kol_account_log
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true, autoincrement: true }
+    kol_id:              { type: integer }
+    log_channel:         { type: tinyint }
+    type:                { type: tinyint }
+    price:               { type: float, length: 8, scale: 2}
+    ct_time:             { type: timestamp }
+    order_number:        { type: bigint }
+    audit:               { type: tinyint }
+#微信支付返回参数记录
+KllWxpayReturnLog:
+  tableName: kll_wxpay_return_log
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true, autoincrement: true }
+    order_number:        { type: bigint }
+    bank_type:           { type: string(20) }
+    fee_type:            { type: string(10) }
+    trade_type:          { type: string(10) }
+    ct_time:             { type: timestamp }
+    transaction_id:      { type: string(50) }
+#宁波保税仓订购人认证
+KllPurchaserAuth:
+  tableName: kll_purchaser_auth
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true,primary: true, autoincrement: true }
+    uid:                 { type: integer }
+    purchaser:           { type: varchar(255) }
+    card_number:         { type: varchar(255) }
+    current_use:         { type: tinyint }
+    create_time:         { type: bigint, unsigned: true }
+
+#kol达人月度账单
+KllKolMonthAccountLog:
+  tableName: kll_kol_month_account_log
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    kol_id:              { type: integer }
+    user_name:           { type: string(255) }
+    account:             { type: string(100) }
+    order_total_price:   { type: float, length: 8, scale: 2}
+    commision_price:     { type: float, length: 8, scale: 2}
+    type:                { type: tinyint }
+    month:               { type: tinyint }
+    year:                { type: tinyint }
+    ct_time:             { type: timestamp }
+    channel_id:          { type: integer }
+
+#新人任务日志表
+KllNewUserTask:
+  tableName: kll_new_user_task
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    user_id:             { type: integer }
+    invitor:             { type: integer }
+    section:             { type: tinyint }
+    ct_time:             { type: timestamp }
+    content:             { type: text }
+    order_number:        { type: bigint }
+
+#任务礼物表
+KllTaskGift:
+  tableName: kll_task_gift
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    user_id:             { type: integer }
+    type:                { type: tinyint }
+    task:                { type: tinyint }
+    ct_time:             { type: timestamp }
+#后台渠道表
+TrdAdminChannel:
+  tableName:  trd_admin_channel
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    identify:            { type: varchar(50) }
+    channel:             { type: varchar(255) }
+    manager:             { type: integer }
+    create_time:         { type: bigint }
+    update_time:         { type: bigint }  
+#后台用户表
+TrdAdminUser:
+  actAs:
+    Timestampable: ~
+  tableName:  trd_admin_user 
+  connection: kaluli
+  columns:
+    id:                  { type: integer, unsigned: true, primary: true, autoincrement: true }
+    hupu_uid:            { type: bigint, unsigned: true }
+    username:            { type: varchar(20) }
+    password:            { type: varchar(20) }
+    qq:                  { type: varchar(20) }
+    email:               { type: varchar(20) }
+    mobile:              { type: varchar(20) }
+    verify:              { type: varchar(20) }
+    channel:             { type: varchar(255) }
+    role:                { type: varchar(20) }
+    last_login_ip:       { type: varchar(20) }
+    last_login_time:     { type: timestamp }
+    user_status:         { type: tinyint(2) }
+

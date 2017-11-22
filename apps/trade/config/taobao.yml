@@ -1,0 +1,19 @@
+default:
+  .taobao:
+    taobao:
+      taobaoke:
+        key: 12651499
+        secret: cf319aebae5b76f5f883ed371a96a216
+      nick: hupu0103
+      gatewayUrl: http://gw.api.taobao.com/router/rest
+      restServer: stream.api.taobao.com
+  .tbsandbox:
+    tbsandbox:
+      taobaoke:
+        key: 1012651499
+        secret: sandboxbae5b76f5f883ed371a96a216
+      nick: hupu0103
+      gatewayUrl: http://gw.api.tbsandbox.com/router/rest
+      restServer: stream.api.tbsandbox.com
+
+  

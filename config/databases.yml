@@ -1,0 +1,471 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/07-Databases
+
+dev:
+  zhuangbeiRedis:
+    class: myredis
+    param:
+      host:       kaluli-01.offline.hupu.com
+      port:       6379
+      house:      1
+  noticesRedis:
+      class: myredis
+      param:
+        host:       kaluli-01.offline.hupu.com
+        port:       6379
+        house:      1
+  tradePersistenceRedis:
+    class: myPersistenceRedis
+    param:
+      host:       kaluli-01.offline.hupu.com
+      port:       6379
+      house:      1
+  kaluliRedis:
+    class: myredis
+    param:
+      host:        kaluli-01.offline.hupu.com
+      port:       6379
+      house:      1
+  tradeActivityRedis:
+    class: myredis
+    param:
+      host:       kaluli-01.offline.hupu.com
+      port:       6379
+      house:      1
+  zhuangbei:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=hc_new;port=3233
+      username: root
+      password: testserver
+      encoding: utf8 
+      group: zhuangbei
+  mobileRedis:
+    class: myredis
+    param:
+      host: 192.168.8.65
+      port: 6379
+      house:      7
+  gamepayRedis:
+      class: myRedis
+      param:
+        host:       192.168.8.30
+        port:       6379
+        house:      1
+
+  trade:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=hc_new_trade;port=3233
+      username: root
+      password: testserver
+      encoding: utf8 
+      group: trade
+  tradeCPS:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=trade_cps;port=3233
+      username: root
+      password: testserver
+      encoding: utf8
+      group: tradeCPS
+  kaluli:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.104;dbname=hc_kaluli;port=3306
+      username: kaluli
+      password: kaluli
+      encoding: utf8
+      group: kaluli
+  kaluliCPS:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.104;dbname=kaluli_cps;port=3306
+      username: kaluli
+      password: kaluli
+      encoding: utf8
+      group: kaluliCPS
+  kaluliCMS:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.104;dbname=kaluli_cms;port=3306
+      username: kaluli
+      password: kaluli
+      encoding: utf8
+      group: kaluliCMS
+  kaluliBB:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.104;dbname=kaluli_bb;port=3306
+      username: kaluli
+      password: kaluli
+      encoding: utf8
+      group: kaluliBB
+
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=hc_new;port=3233
+      username: root
+      password: testserver
+      encoding: utf8        
+      group: doctrine
+  hc_news: 
+    class: sfMysqlDatabase
+    param:
+      host:       192.168.0.62:3306
+      database:   hc_news
+      username:   hc_news
+      password:   nVqspjfJfMqCbFfA
+      encoding:   utf8
+
+  hc_www:
+    class: sfMysqlDatabase
+    param:
+      host:       192.168.1.51:3306
+      database:   hc_www
+      username:   hoopchina
+      password:   'mv5B8&#LSSL9exG,wTp'
+      encoding:   utf8
+
+
+  tradeMemcache:
+    class: myTTDatabase
+    param:
+      host:       192.168.8.193
+      port:       11211
+test:
+# Hupu homepage  storage
+  mysphinxMysql:
+    class: mysphinx
+    param:
+      host:       192.168.8.175
+      port:       9306
+  zhuangbeiRedis:
+    class: myredis
+    param:
+      host:       192.168.1.131
+      port:       6379
+      house:      1   
+  zhuangbei:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=hc_new;port=3233
+      username: root
+      password: testserver
+      encoding: utf8 
+      group: zhuangbei
+
+  hupuHomepageDatabase:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=www_hupu1;port=3233
+      username: root
+      password: testserver
+      encoding: utf8    
+      group: hupuHomepageDatabase
+      
+  hupuHomepageTT:
+    class: myTTDatabase
+    param:
+      host:       192.168.8.192
+      port:       11212
+      
+  hupuHomepageMemcache:
+    class: myTTDatabase
+    param:
+      host:       192.168.10.202
+      port:       11211
+
+  #改为redis
+  hupuHomepageRedisForever:
+    class: RedisDatabase
+    param:
+      host:       192.168.9.187
+      port:       6379
+
+  hupuHomepageRedis:
+    class: RedisDatabase
+    param:
+      host:       192.168.9.186
+      port:       6379
+# End hupu homepage  storage  
+
+  trade:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=hc_new_trade;port=3233
+      username: root
+      password: testserver
+      encoding: utf8   
+      group: trade
+  tradeCPS:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=trade_cps;port=3233
+      username: root
+      password: testserver
+      encoding: utf8
+      group: tradeCPS
+  kaluli:
+      class: sfDoctrineDatabase
+      param:
+        dsn:      mysql:host=192.168.9.112;dbname=hc_kaluli;port=3233
+        username: root
+        password: testserver
+        encoding: utf8
+        group: kaluli
+  kaluliCPS:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.8.11;dbname=kaluli_cps;port=3233
+      username: root
+      password: testserver
+      encoding: utf8
+      group: kaluliCPS
+
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.9.112;dbname=hc_new;port=3233
+      username: root
+      password: testserver
+      encoding:   utf8
+      group: doctrine
+
+  hc_news:
+    class: sfMysqlDatabase
+    param:
+      host:       192.168.8.32:3230
+      database:   hc_news
+      username:   hc_news
+      password:   nVqspjfJfMqCbFfA
+      encoding:   utf8
+
+
+      
+  hupuMemcache:
+    class: myTTDatabase
+    param:
+      host:       192.168.1.51
+      port:       12000
+      
+  gamespaceMemcache:
+    class: myTTDatabase
+    param:
+      host:       192.168.1.51
+      port:       12000
+
+  tradeMemcache:
+    class: myTTDatabase
+    param:
+      host:       192.168.8.193
+      port:       11211       
+prod:
+  mysphinxMysql:
+    class: mysphinx
+    param:
+      host:       192.168.1.58
+      port:       9306
+  gamespaceRedis:
+    class: myredis
+    param:
+      host:       192.168.5.206
+      port:       6777
+      house:      1 
+  zhuangbeiRedis:
+    class: myredis
+    param:
+      host:       192.168.6.135
+      port:       6781
+      house:      1
+  tradePersistenceRedis:
+    class: myredis
+    param:
+      host:       fb26689b3e7f4fc3.m.cnhza.kvstore.aliyuncs.com
+      port:       6379
+      username: fb26689b3e7f4fc3
+      password: YbeNI3ByazP3
+  kaluliRedis:
+    class: myredis
+    param:
+      host:       fb26689b3e7f4fc3.m.cnhza.kvstore.aliyuncs.com
+      port:       6379
+      username: fb26689b3e7f4fc3
+      password: YbeNI3ByazP3
+  tradeActivityRedis:
+    class: myredis
+    param:
+      host:       192.168.5.211
+      port:       6778
+      house:      1
+  zhuangbei:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.1.253;dbname=hc_new
+      username: hc_newM
+      password: 3EttfEdpu79xAeAR
+      encoding:   utf8
+      group: zhuangbei
+  mobileRedis:
+    class: myredis
+    param:
+      host: 192.168.5.206
+      port: 6776
+      house: 0
+  trade:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.1.236;dbname=trade_hupu
+      username: trade
+      password: LIEoru2834jIUerhowi3juier
+      encoding:   utf8
+      group: trade
+  tradeCPS:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.1.236;dbname=trade_cps_hupu
+      username: tradecps
+      password: LKJioweur89JUerow03ujlfre
+      encoding: utf8
+      group: tradeCPS
+  kaluli:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=rdsm4141x7n8183ov3sw.mysql.rds.aliyuncs.com;dbname=kaluli
+      username: kaluli
+      password: zOJCK_sXOmIap1jXPXhEqGfwNwPLns
+      encoding: utf8
+      group: kaluli
+  kaluliCPS:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=rdsm4141x7n8183ov3sw.mysql.rds.aliyuncs.com;dbname=kaluli_cps_hupu
+      username: kaluli
+      password: zOJCK_sXOmIap1jXPXhEqGfwNwPLns
+      encoding: utf8
+      group: kaluliCPS
+  kaluliCMS:
+      class: sfDoctrineDatabase
+      param:
+        dsn:      mysql:host=rdsm4141x7n8183ov3sw.mysql.rds.aliyuncs.com;dbname=kaluli_cms
+        username: kaluli
+        password: zOJCK_sXOmIap1jXPXhEqGfwNwPLns
+        encoding: utf8
+        group: kaluliCMS
+  kaluliBB:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=rm-bp125m7yq9e8793sa.mysql.rds.aliyuncs.com;dbname=kaluli_bb
+      username: kaluli
+      password: zOJCK_sXOmIap1jXPXhEqGfwNwPLns
+      encoding: utf8
+      group: kaluliBB
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=192.168.1.253;dbname=hc_new
+      username: hc_newM
+      password: 3EttfEdpu79xAeAR
+      encoding:   utf8
+      group: doctrine
+  hc_news:
+    class: sfMysqlDatabase
+    param:
+      host:       122.192.65.53:3306
+      database:   hc_news
+      username:   m_api_readonly
+      password:   'Xy46jhuiUWr34jer#^ls$'
+      encoding:   utf8
+  hc_www:
+    class: sfMysqlDatabase
+    param:
+      host:       122.192.65.53:3306
+      database:   hc_www
+      username:   m_api_readonly
+      password:   'Xy46jhuiUWr34jer#^ls$'
+      encoding:   utf8
+
+
+  tradeMemcache:
+    class: myTTDatabase
+    param:
+      host:       192.168.1.244
+      port:       11211
+      
+  hcIndex:
+    class: myTTDatabase
+    param:
+      host:       122.192.65.53
+      port:       13011
+  #帖子点击数
+  postHits:
+    class: myredis
+    param:
+      host:       192.168.5.206
+      port:       6780
+      house:      1
+      
+  cba_tv_live:
+    class: sfMysqlDatabase
+    param:
+      host:       122.192.65.53:3306
+      database:   hoop_bballs_new
+      username:   m_api_readonly
+      password:   'Xy46jhuiUWr34jer#^ls$'
+      encoding:   utf8
+  noticesRedis:
+    class: myredis
+    param:
+      host:       192.168.5.211
+      port:       6779
+      house:      0
+
+
+stg:
+  tradePersistenceRedis:
+    class: myredis
+    param:
+      host:       026e7421a1c94c6a.redis.rds.aliyuncs.com
+      port:       6379
+      username: 026e7421a1c94c6a
+      password: YbeNI3ByazP3
+  kaluliRedis:
+    class: myredis
+    param:
+      host:       026e7421a1c94c6a.redis.rds.aliyuncs.com
+      port:       6379
+      username: 026e7421a1c94c6a
+      password: YbeNI3ByazP3
+  kaluli:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=rm-bp1fp8akjc3727h6l.mysql.rds.aliyuncs.com;dbname=kaluli
+      username: kaluli
+      password: dYTw4QzcHgOy
+      encoding: utf8
+      group: kaluli
+  kaluliCPS:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=rm-bp1fp8akjc3727h6l.mysql.rds.aliyuncs.com;dbname=kaluli_cps_hupu
+      username: kaluli
+      password: dYTw4QzcHgOy
+      encoding: utf8
+      group: kaluliCPS
+  kaluliCMS:
+      class: sfDoctrineDatabase
+      param:
+        dsn:      mysql:host=rm-bp1fp8akjc3727h6l.mysql.rds.aliyuncs.com;dbname=kaluli_cms
+        username: kaluli
+        password: dYTw4QzcHgOy
+        encoding: utf8
+        group: kaluliCMS
+  kaluliBB:
+    class: sfDoctrineDatabase
+    param:
+      dsn:      mysql:host=rm-bp125m7yq9e8793sa.mysql.rds.aliyuncs.com;dbname=kaluli_bb
+      username: kaluli
+      password: zOJCK_sXOmIap1jXPXhEqGfwNwPLns
+      encoding: utf8
+      group: kaluliBB

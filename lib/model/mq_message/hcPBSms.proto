@@ -1,0 +1,5 @@
+message hcPBSms {
+        required int64  id = 1;
+        required string phone_num=2;
+        required string msg_text=3;
+        }

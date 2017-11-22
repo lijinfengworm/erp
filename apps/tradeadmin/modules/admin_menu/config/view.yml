@@ -1,0 +1,6 @@
+addsSuccess:
+  stylesheets:
+    - tradeadmin/page/admin_menu.css
+indexSuccess:
+  stylesheets:
+    - tradeadmin/page/admin_menu.css

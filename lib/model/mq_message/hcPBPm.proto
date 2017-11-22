@@ -1,0 +1,11 @@
+message hcPBPm {
+        required int32  uid_to = 1;
+        required string username_to=2;
+        required int32  uid_from = 3;
+        required string username_from=4;
+        required string title=5;
+        required string content=6;
+        required int32 sendtime=7;
+        required int32 isnew=8;
+        required int32 type=9;
+        }

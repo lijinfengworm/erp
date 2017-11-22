@@ -1,0 +1,25 @@
+# Project files
+/cache/*
+/log/*
+/web/*_dev.php
+/web/*_test.php
+/web/uploads/*
+/data/db_diagram
+/test/*
+
+# SCM files
+.arch-params
+.bzr
+_darcs
+.git
+.hg
+.monotone
+.svn
+CVS
+.back
+.bak
+.swp
+
+# Files generated on the fly
+/web/generated
+/web/xml

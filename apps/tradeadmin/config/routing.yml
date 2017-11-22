@@ -1,0 +1,314 @@
+kll_dictionary:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KllDictionary
+    module:               kll_dictionary
+    prefix_path:          /kll_dictionary
+    column:               id
+    with_wildcard_routes: true
+
+kll_trainingprogram:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KllTrainingprogram
+    module:               kll_trainingprogram
+    prefix_path:          /kll_trainingprogram
+    column:               id
+    with_wildcard_routes: true
+
+kll_order_charge_details:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                kllOrderChargeDetails
+    module:               kll_order_charge_details
+    prefix_path:          /kll_order_charge_details
+    column:               id
+    with_wildcard_routes: true
+
+kll_order_customs:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                kllOrderCustoms
+    module:               kll_order_customs
+    prefix_path:          /kll_order_customs
+    column:               id
+    with_wildcard_routes: true
+
+kll_operate_special:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KllOperateSpecial
+    module:               kll_operate_special
+    prefix_path:          /kll_operate_special
+    column:               id
+    with_wildcard_routes: true
+
+trd_goods_supplier_comment:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdGoodsSupplierComment
+    module:               trd_goods_supplier_comment
+    prefix_path:          /trd_goods_supplier_comment
+    column:               id
+    with_wildcard_routes: true
+
+trd_goods_supplier:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdGoodsSupplier
+    module:               trd_goods_supplier
+    prefix_path:          /trd_goods_supplier
+    column:               id
+    with_wildcard_routes: true
+
+trd_groupon_treasure:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdGrouponTreasure
+    module:               trd_groupon_treasure
+    prefix_path:          /trd_groupon_treasure
+    column:               id
+    with_wildcard_routes: true
+
+trd_daigou_inventory:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdDaigouInventory
+    module:               trd_daigou_inventory
+    prefix_path:          /trd_daigou_inventory
+    column:               id
+    with_wildcard_routes: true
+
+kaluli_warehouses:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KaluliWarehouses
+    module:               kaluli_warehouses
+    prefix_path:          /kaluli_warehouses
+    column:               id
+    with_wildcard_routes: true
+
+kll_cps_order:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KllCpsOrder
+    module:               kll_cps_order
+    prefix_path:          /kll_cps_order
+    column:               id
+    with_wildcard_routes: true
+
+kll_cps_user:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KllCpsUser
+    module:               kll_cps_user
+    prefix_path:          /kll_cps_user
+    column:               id
+    with_wildcard_routes: true
+kll_cps_event:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KllCpsEvent
+    module:               kll_cps_event
+    prefix_path:          /kll_cps_event
+    column:               id
+    with_wildcard_routes: true
+kaluli_item_sku_kaluli_item_autosku:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KaluliItemSku
+    module:               kaluli_item_autosku
+    prefix_path:          /kaluli_item_autosku
+    column:               id
+    with_wildcard_routes: true
+
+kaluli_order_warelog:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KaluliOrderWarelog
+    module:               kaluli_order_warelog
+    prefix_path:          /kaluli_order_warelog
+    column:               id
+    with_wildcard_routes: true
+truetrd_find_tags:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdFindTags
+    module:               trd_find_tags
+    prefix_path:          /trd_find_tags
+    column:               id
+    with_wildcard_routes: true
+trd_find:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdFind
+    module:               trd_find
+    prefix_path:          /trd_find
+    column:               id
+    with_wildcard_routes: true
+
+trd_user_activity:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdUserActivity
+    module:               trd_user_activity
+    prefix_path:          /trd_user_activity
+    column:               id
+    with_wildcard_routes: true
+kaluli_order_history:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                KaluliOrderHistory
+    module:               kaluli_order_history
+    prefix_path:          /kaluli_order_history
+    column:               id
+    with_wildcard_routes: truenews_audit:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdNews
+    module:               news_audit
+    prefix_path:          /news_audit
+    column:               id
+    with_wildcard_routes: true
+
+trd_comment_prohibit:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdCommentProhibit
+    module:               trd_comment_prohibit
+    prefix_path:          /trd_comment_prohibit
+    column:               id
+    with_wildcard_routes: true
+
+
+trd_groupon:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdGroupon
+    module:               trd_groupon
+    prefix_path:          /trd_groupon
+    column:               id
+    with_wildcard_routes: true
+
+
+trd_shaiwu_product:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdShaiwuProduct
+    module:               trd_shaiwu_product
+    prefix_path:          /trd_shaiwu_product
+    column:               id
+    with_wildcard_routes: true
+
+trd_comment_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdCommentType
+    module:               trd_comment_type
+    prefix_path:          /trd_comment_type
+    column:               id
+    with_wildcard_routes: true
+
+trd_comment_cluster:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdCommentCluster
+    module:               trd_comment_cluster
+    prefix_path:          /trd_comment_cluster
+    column:               id
+    with_wildcard_routes: true
+
+trd_comment:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdComment
+    module:               trd_comment
+    prefix_path:          /trd_comment
+    column:               id
+    with_wildcard_routes: true
+
+
+trd_special_cate:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdSpecialCate
+    module:               trd_special_cate
+    prefix_path:          /trd_special_cate
+    column:               id
+    with_wildcard_routes: true
+
+
+trd_seo_news:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdSeoNews
+    module:               trd_seo_news
+    prefix_path:          /trd_seo_news
+    column:               id
+    with_wildcard_routes: true
+
+trd_menu:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdMenu
+    module:               trd_menu
+    prefix_path:          /trd_menu
+    column:               id
+    with_wildcard_routes: true
+
+trd_news:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdNews
+    module:               trd_news
+    prefix_path:          /trd_news
+    column:               id
+    with_wildcard_routes: true
+
+trd_admin_role:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdAdminRole
+    module:               trd_admin_role
+    prefix_path:          /trd_admin_role
+    column:               id
+    with_wildcard_routes: true
+
+trd_admin_user:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdAdminUser
+    module:               trd_admin_user
+    prefix_path:          /trd_admin_user
+    column:               id
+    with_wildcard_routes: true
+trd_store:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                TrdStore
+    module:               trd_store
+    prefix_path:          /trd_store
+    column:               id
+    with_wildcard_routes: true
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: public, action: login}
+login:
+  url:   /login
+  param: { module: public, action: login}
+welcome:
+  url: /welcome
+  param: { module: public, action: welcome}
+logout:
+  url: /logout
+  param: { module: public, action: logout}
+default_index:
+  url:   /:module
+  param: { action: index }
+default:
+  url:   /:module/:action/*
