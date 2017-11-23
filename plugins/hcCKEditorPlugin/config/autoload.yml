@@ -1,9 +1,0 @@
-autoload:
-  ckeditor:
-    name:       ckeditor
-    path:       %SF_PLUGINS_DIR%/hcCKEditorPlugin/lib/vendor/ckeditor/ckeditor_php5.php
-    recursive:  on
-  ckfinder:
-    name:       ckfinder
-    path:       %SF_PLUGINS_DIR%/hcCKEditorPlugin/lib/vendor/ckfinder
-    recursive:  on

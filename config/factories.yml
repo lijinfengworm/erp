@@ -1,8 +1,0 @@
-all:
-  storage:
-    class: sfCryptedCookieSessionStorage 
-    param: 
-      session_name:    hcsf   #default value 
-      secret:          O|0OD0o1Ll1L|.com
-      crypt_iv:        36760988
-      use_compression: true
