@@ -5,8 +5,7 @@
  */
 class kllSendMessage
 {
-    private $clientId = "03aabc560633952169a68916ace98b1f";
-    private $apikey = 'c12d6f0faa9257657387b16643be1895';
+    
     private  $url="https://inform.hupu.com/sms.json";
     private  $smsClient;
     private  $white_list = [28989349,28880872,26963041,28879888,26473705];
